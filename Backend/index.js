@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import mongoose from "mongoose";
+import chatbotRoutes from "./chatbotRoutes.js";
 
 dotenv.config();
 const app = express();
@@ -14,6 +15,9 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.send("Hello from backend!");
 });
+
+// ✅ Chatbot routes
+app.use("/api/chatbot", chatbotRoutes);
 
 // ✅ Port
 const PORT = process.env.PORT || 5000;
