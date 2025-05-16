@@ -1,18 +1,17 @@
-import { useEffect, useState } from 'react';
+
+import React, { useState } from 'react';
+import ChatIcon from './components/ChatIcon';
+import Chatbot from './components/Chatbot';
+import './components/Chatbot.css';
 
 function App() {
-  const [message, setMessage] = useState('');
-
-  useEffect(() => {
-    fetch('http://localhost:5000/')
-      .then((res) => res.text())
-      .then((data) => setMessage(data));
-  }, []);
+  const [showChat, setShowChat] = useState(false);
 
   return (
     <div className="App">
       <h1>Frontend</h1>
-      <p>{message}</p>
+      {showChat && <Chatbot onClose={() => setShowChat(false)} />}
+      {!showChat && <ChatIcon onClick={() => setShowChat(true)} />}
     </div>
   );
 }
